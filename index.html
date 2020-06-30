@@ -12,12 +12,17 @@
         <input type="text" v-model="author.name">
         <div>{{author.name}}</div>
         <div>{{author.age}}</div>
+        <!-- 如果数据不变，视图就不会刷新 -->
+         <!-- 会去取值，我们在内部会匹配{{}} -->
+        {{getNewName}}
+       
         <ul>
             <li>1</li>
             <li>1</li>
         </ul>
+        <button v-on:click="change">点击</button>
     </div>
-    <script src="./observer.js"></script>
+    <script src="./computedMethods.js"></script>
     <script>
         let vm = new Vue({
             el: '#app',
@@ -31,7 +36,14 @@
 
             },
             computed:{
-
+                getNewName(){
+                    return this.author.name + "帅"
+                }
+            },
+            methods:{
+                change(){
+                    this.author.name = "王某某真帅"
+                }
             }
         })
     </script>
